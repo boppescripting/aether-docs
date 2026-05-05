@@ -12,8 +12,29 @@ The Custom Instance system lets Diamond tier subscribers run a second, fully bra
 3. Copy the bot **Token** from the Bot page.
 4. Copy the **Application ID** from the General Information page (this is your Client ID).
 5. Invite the bot to your server using the OAuth2 URL generator (scopes: `bot`, `applications.commands`).
-6. Run `/instance setup` in your Discord server and paste both the token and client ID.
-7. The bot will start up within a few seconds. Use `/instance status` to confirm it is running.
+6. Under **Bot Permissions**, check the following:
+    | Permission | Required For |
+    |---|---|
+    | Manage Roles | Auto roles, reaction roles, sticky roles, role permissions, temp voice, leveling rewards |
+    | Manage Channels | Tickets, temp voice, server stats channels |
+    | Manage Messages | Purge, automod, sticky messages |
+    | Manage Nicknames | Server logging (nickname change events) |
+    | Kick Members | AutoMod, strike manager |
+    | Ban Members | AutoMod, strike manager, FiveM integration |
+    | Moderate Members | AutoMod timeout action |
+    | Move Members | Temp voice |
+    | View Audit Log | Server logging |
+    | Send Messages | All modules |
+    | Send Messages in Threads | Tickets |
+    | Embed Links | All modules |
+    | Attach Files | Ticket transcripts |
+    | Read Message History | Purge, sticky messages |
+    | Add Reactions | Suggestions, reaction roles |
+    | Use External Emojis | Reaction roles (only needed if you use custom emojis from other servers as role triggers) |
+    | Connect | Temp voice |
+7. Copy the generated URL, open it in your browser, and invite the bot to your server.
+8. Run `/instance setup` in your Discord server and paste both the token and client ID.
+9. The bot will start up within a few seconds. Use `/instance status` to confirm it is running. Once your custom instance has started, you may kick the main "Aether" bot from your server.
 
 ### Usage
 
