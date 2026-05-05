@@ -1,0 +1,202 @@
+# FiveM
+
+## Manage Your FiveM Server From Discord
+
+### Overview
+The FiveM module creates a live WebSocket bridge between your FiveM server and your Discord bot. Once connected, staff can view the player list, look up individual players, manage their inventory, kick, ban, heal, and broadcast announcements — all without ever opening the server console. Free guilds get the connection tools and player list. Gold+ unlocks the full suite of player management commands.
+
+---
+:::warning
+**Configure role restrictions before starting the Aether resource.**
+Until restrictions are set, every member of your Discord server can use every `/fivem` command that their subscription tier allows. Set up your role restrictions via `/settings fivem` or the dashboard **before** adding `ensure aether` to your `server.cfg` and starting the resource.
+:::
+---
+
+### Setup
+
+1. Run `/settings fivem` (or open the FiveM page in the dashboard) and configure which roles are allowed to use each command. Do this **before** connecting your server.
+2. Run `/fivem setup` in your Discord server. Copy the generated token — you will need it in the next step.
+3. Download the `aether` FiveM resource and place it in your server's `resources/` folder.
+4. Open `resources/aether/config.lua` and paste your token into `Config.GuildToken`. Set `Config.BridgeURL` to the WebSocket address of your Aether bot host (e.g. `ws://your-host:8080`).
+5. Add `ensure aether` to your `server.cfg`.
+6. Restart your FiveM server. The resource will automatically connect to the bridge.
+7. Run `/fivem status` in Discord to confirm the connection shows as **Connected**.
+
+### Configuration
+
+All FiveM settings are managed through `/settings fivem` or the dashboard under **FiveM**.
+
+#### Command log channel
+Select a channel where successful `/fivem` command uses are logged. Each log entry shows who ran the command, which subcommand was used, and the relevant details (player ID, reason, amount, etc.). Leave unset to disable logging.
+
+#### Command role restrictions
+Each `/fivem` subcommand can be locked behind a specific Discord role. Members who have the required role (or have Administrator permission) can use the command; everyone else is blocked with an error message.
+
+- Role restrictions apply on top of tier requirements — a Gold command still requires Gold tier even if a role is configured.
+- Administrators always bypass role restrictions regardless of configuration.
+- `/fivem setup` is **always** restricted to Administrators and cannot be changed.
+- To remove a restriction from a command, select the command in the settings menu and click **Remove restriction**, or set the role picker to blank in the dashboard.
+
+### Usage
+
+Once connected, the resource runs silently in the background. It auto-detects your framework (ESX, QBCore, or QBox) and inventory system (ox_inventory, qb-inventory, ps-inventory, or ESX default) — no manual configuration is required.
+
+Commands sent from Discord are routed through the bridge in real time. Responses are returned within 15 seconds; if the server does not respond in time the command will time out. If the FiveM server disconnects, it will automatically reconnect using the delay configured in `config.lua`.
+
+### Commands
+
+#### /fivem setup
+- **Description:** Generates a connection token and displays the `config.lua` snippet to connect your FiveM server to the bridge. Generating a new token invalidates the previous one and preserves all other settings (log channel, role restrictions).
+- **Parameters:** None
+- **Permissions:** Administrator only (not configurable)
+- **Available On:** Both
+
+#### /fivem status
+- **Description:** Shows whether the bridge is configured and whether the FiveM server is currently connected.
+- **Parameters:** None
+- **Permissions:** No default restriction — configure via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem playerlist
+- **Description:** Displays all players currently online, including their server ID, name, ping, and job (if available).
+- **Parameters:** None
+- **Permissions:** No default restriction — configure via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem stats
+- **Description:** Shows full player information: name, identifier, ping, job, cash, bank balance, and all held licenses. Requires Gold tier.
+- **Parameters:** `playerid` (integer, required) — the FiveM server ID of the player.
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem inventory
+- **Description:** Displays a snapshot of a player's current inventory. Requires Gold tier.
+- **Parameters:** `playerid` (integer, required) — the FiveM server ID of the player.
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem search
+- **Description:** Searches for a player by name, phone number, or vehicle plate. Returns all matches including offline players. Requires Gold tier.
+- **Parameters:**
+  - `query` (string, required) — search term (max 100 characters)
+  - `method` (string, optional) — `name`, `phone`, or `plate` (default: `name`)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem giveitem
+- **Description:** Gives a specified item and quantity to a player. Use the internal item name (e.g. `bread`, `water`). Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `item` (string, required) — internal item name (max 64 characters)
+  - `amount` (integer, required) — quantity to give (1–9999)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem removeitem
+- **Description:** Removes a specified item and quantity from a player's inventory. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `item` (string, required) — internal item name (max 64 characters)
+  - `amount` (integer, required) — quantity to remove (1–9999)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem heal
+- **Description:** Heals a player to full health. Requires Gold tier.
+- **Parameters:** `playerid` (integer, required) — FiveM server ID
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem revive
+- **Description:** Revives a downed player. Requires Gold tier.
+- **Parameters:** `playerid` (integer, required) — FiveM server ID
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem armor
+- **Description:** Sets a player's armor to a specified percentage. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `amount` (integer, required) — armor percentage (0–100)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem kick
+- **Description:** Kicks a player from the FiveM server with an optional reason. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `reason` (string, optional) — reason shown to the player (max 256 characters)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem ban
+- **Description:** Bans a player from the FiveM server with an optional reason. Uses your framework's built-in ban system. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `reason` (string, optional) — reason shown to the player (max 256 characters)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem kickall
+- **Description:** Kicks all players currently online with an optional reason. Requires Gold tier.
+- **Parameters:** `reason` (string, optional) — reason shown to players (max 256 characters, default: "Server is restarting")
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem announce
+- **Description:** Broadcasts a message to all players currently in-game. Requires Gold tier.
+- **Parameters:** `message` (string, required) — the announcement text (max 512 characters)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem givemoney
+- **Description:** Gives a cash or bank amount to a player. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `amount` (integer, required) — amount to give (1–999,999,999)
+  - `moneytype` (string, optional) — `cash`, `bank`, or `black_money` (default: `cash`)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem removemoney
+- **Description:** Removes a cash or bank amount from a player. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `amount` (integer, required) — amount to remove (1–999,999,999)
+  - `moneytype` (string, optional) — `cash`, `bank`, or `black_money` (default: `cash`)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem setjob
+- **Description:** Sets a player's job and grade. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `job` (string, required) — internal job name (max 64 characters)
+  - `grade` (integer, optional) — job grade (0–99, default: 0)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem givelicense
+- **Description:** Grants a license to a player (e.g. `driver`, `weapon`). Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `license` (string, required) — license name (max 64 characters)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem removelicense
+- **Description:** Removes a license from a player. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `license` (string, required) — license name (max 64 characters)
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both
+
+#### /fivem spawnvehicle
+- **Description:** Spawns a vehicle for a player at their location, or adds it directly to their garage. Requires Gold tier.
+- **Parameters:**
+  - `playerid` (integer, required) — FiveM server ID
+  - `model` (string, required) — vehicle model name (e.g. `adder`, `zentorno`, max 64 characters)
+  - `togarage` (boolean, optional) — if `true`, adds the vehicle to the player's garage instead of spawning it in the world
+- **Permissions:** Gold tier required — additionally configurable via `/settings fivem`
+- **Available On:** Both

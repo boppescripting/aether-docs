@@ -1,0 +1,39 @@
+# Status Blacklist
+
+## Take action when a member's custom Discord status contains a blacklisted word
+
+### Overview
+Monitors members' custom Discord statuses in real time. When a blacklisted word or phrase is detected, the bot automatically takes a configured action — logging the violation, kicking or banning the member, or sending them a DM. Ideal for preventing members from advertising competitor services, using offensive language in their status, or violating community rules passively.
+
+### Setup
+1. Run `/settings` and navigate to **Status Blacklist**.
+2. Click **Add Word** to add words or phrases to the blacklist (case-insensitive, partial match).
+3. Click **Set Action** to choose what happens when a match is detected: log, kick, ban, or DM.
+4. If using **Log**, **Kick**, or **Ban**, click **Set Log Channel** to select where violation embeds are sent.
+5. If using **DM**, click **Set DM Message** to customise the message sent to the member.
+6. Optionally add **Exempt Roles** for members who should be excluded from enforcement.
+7. The module is enabled by default. Use the **Enable/Disable** toggle to pause it without losing your configuration.
+
+### Usage
+Once configured, the bot listens for presence updates. Whenever a member's custom status changes, it is checked against the blacklist. If a match is found:
+- **Log** — sends a violation embed to the configured log channel.
+- **Kick** — kicks the member and sends a violation embed to the log channel (if set).
+- **Ban** — bans the member and sends a violation embed to the log channel (if set).
+- **DM** — sends the configured DM message to the member without taking any moderation action.
+
+Admins are not exempt by default; use the Exempt Roles feature if needed.
+
+Word limits by tier:
+| Tier | Max Words |
+|------|-----------|
+| Free | 5 |
+| Gold | 20 |
+| Diamond | Unlimited |
+
+### Commands
+
+#### /settings
+- **Description:** Opens the settings menu. Navigate to **Status Blacklist** to configure this module.
+- **Parameters:** None.
+- **Permissions:** Administrator
+- **Available On:** Both

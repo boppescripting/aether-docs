@@ -1,0 +1,42 @@
+# Welcome
+
+## Greet new members with a configurable message
+
+### Overview
+
+The Welcome module sends a message to a designated channel whenever a new member joins your server. Messages support dynamic variables and can be sent as a plain text message or a rich embed. An optional DM welcome can also be sent directly to the new member.
+
+### Setup
+
+1. Run `/settings welcome` to open the Welcome settings.
+2. Click **Set Channel** and choose the channel where welcome messages will be posted.
+3. Click **Set Message** to customize the message. Use `{user}` to mention the member, `{server}` for the server name, and `{membercount}` for the current member count.
+4. *(Optional)* Click **Embed Settings** to enable a rich embed and configure an optional footer and image. The embed color matches your server's configured branding color.
+5. *(Optional)* Click **DM Settings** to enable a direct message sent to the new member on join.
+6. Click **Enable** to activate the module.
+
+### Usage
+
+Once configured:
+
+- When a member joins, Aether posts the welcome message to the configured channel.
+- If an embed is enabled, the message is rendered as a Discord embed using the server's branding color, with an optional footer and image.
+- If DM welcome is enabled, the member also receives a direct message. If the member has DMs disabled, the failure is silently ignored.
+
+**Available variables for both the channel message and DM message:**
+
+| Variable | Replaced with |
+|---|---|
+| `{user}` | A mention of the new member |
+| `{server}` | The server name |
+| `{membercount}` | The current member count after the join |
+
+### Commands
+
+There are no standalone commands for this module. All configuration is handled through `/settings welcome`.
+
+#### /settings welcome
+- **Description:** Opens the Welcome settings menu for this server.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.

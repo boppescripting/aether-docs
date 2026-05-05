@@ -1,0 +1,76 @@
+# Role Permissions
+
+## Delegated Role Management (Gold+)
+
+:::info
+This module requires at least a gold subscription.
+:::
+
+### Overview
+
+Role Permissions lets you define **permission groups** — each group specifies exactly which staff roles can manage it (Managers) and which Discord roles they are allowed to grant or remove (Assignable Roles). Multiple independent groups can coexist, so for example an EMS Command group and a PD Command group each control their own set of roles with no overlap.
+
+Members with configured manager roles can use `/role add` and `/role remove` without holding Discord's **Manage Roles** permission. Multiple safety guardrails prevent privilege escalation regardless of how groups are configured.
+
+### Setup
+
+1. Run `/settings` → **Role Permissions** (requires Gold tier or higher).
+2. Click **+ Add Group** and enter a name for the group (e.g. `EMS Command`).
+3. In the group editor, click **Add Manager** to select the staff role(s) whose members can use `/role` for this group.
+4. Click **Add Assignable** to select each role that managers in this group are allowed to grant or remove.
+5. Repeat from step 2 to create additional groups (e.g. `PD Command`, `Civilian Command`).
+
+To edit a group later, select it from the group list on the main settings page.
+
+### Usage
+
+- `/role add @member` — shows an autocomplete list of roles the caller is authorised to assign. Select one to grant it.
+- `/role remove @member` — shows an autocomplete list of roles the caller is authorised to remove. Select one to revoke it.
+- `/rolemanager list` — lists all configured groups with their manager and assignable roles (requires Manage Roles).
+
+The role autocomplete only surfaces roles that are in the caller's authorised groups and are below both the caller's and the bot's highest role in the hierarchy — no dangerous or unreachable roles will appear.
+
+### Safety Rules
+
+All of the following are enforced on every `/role` call regardless of group configuration:
+
+| Check | Rule |
+|-------|------|
+| **Group check** | The target role must appear in the assignable list of at least one group the caller manages. |
+| **Hierarchy protection** | Cannot assign a role equal to or higher than the caller's own highest role. |
+| **Bot limit** | Cannot assign a role equal to or higher than the bot's highest role. |
+| **Anti-escalation** | If the target role has a dangerous permission (Administrator, Manage Server, Manage Roles, Ban Members, Kick Members, etc.), the caller must hold that permission natively. |
+
+An audit reason is written to Discord on every role change: `Role add/remove by username via /role`.
+
+### Commands
+
+#### /role add
+- **Description:** Adds a role to a member. Role is selected via autocomplete — only roles the caller is authorised to assign are shown.
+- **Parameters:** `user` (User, required), `role` (autocomplete string, required).
+- **Permissions:** Must be a Manager in a group containing the target role, or Administrator.
+- **Available On:** Both.
+
+#### /role remove
+- **Description:** Removes a role from a member. Role is selected via autocomplete — only roles the caller is authorised to remove are shown.
+- **Parameters:** `user` (User, required), `role` (autocomplete string, required).
+- **Permissions:** Must be a Manager in a group containing the target role, or Administrator.
+- **Available On:** Both.
+
+#### /rolemanager list
+- **Description:** Shows all configured permission groups with their manager and assignable roles.
+- **Parameters:** None.
+- **Permissions:** Manage Roles.
+- **Available On:** Both.
+
+#### /settings rolepermissions
+- **Description:** Opens the Role Permissions settings menu where groups can be created and managed.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Tier Requirement
+
+Role Permissions is available to **Gold** tier and above.

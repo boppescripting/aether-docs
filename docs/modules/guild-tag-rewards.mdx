@@ -1,0 +1,24 @@
+# Guild Tag Rewards
+
+## Reward members who represent your server's guild tag
+
+### Overview
+Automatically assigns a role to members who have your server's guild tag set as their active (primary) guild tag on their Discord profile. The role is removed if they stop representing the tag. This rewards members who publicly show their loyalty to your community directly in their Discord username display.
+
+### Setup
+1. Run `/settings` and navigate to **Guild Tag Rewards**.
+2. Click **Set Role** and select the role to award to members representing your tag.
+3. The module is enabled by default. Use the **Enable/Disable** toggle to pause it without losing your configuration.
+
+> **Note:** Your Discord server must have the Guild Tag (Clans) feature enabled and approved by Discord before members can represent your tag.
+
+### Usage
+Once configured, the bot listens for member updates and presence changes. When a member enables your guild's tag as their primary guild identity (`identityEnabled: true` and `identityGuildId` matching your server), the reward role is automatically assigned. If they switch to another guild's tag or disable it entirely, the role is removed.
+
+### Commands
+
+#### /settings
+- **Description:** Opens the settings menu. Navigate to **Guild Tag Rewards** to configure this module.
+- **Parameters:** None.
+- **Permissions:** Administrator
+- **Available On:** Both

@@ -1,0 +1,130 @@
+# Privacy Policy
+
+**Last updated: May 4, 2026**
+
+This Privacy Policy explains what information Aether ("the Bot", "we", "us") collects, how it is used, and how long it is retained. By adding Aether to your Discord server or using the web dashboard, you agree to the practices described here.
+
+---
+
+## 1. Who We Are
+
+Aether is a Discord bot and web dashboard operated as an independent service. For privacy-related questions, contact us in our [support server](https://discord.gg/ebuTtkDxWb) or by email at **aetherhelp@outlook.com**.
+
+---
+
+## 2. What We Collect
+
+We collect only what is necessary to operate the bot's features. We do not sell data to third parties.
+
+### 2.1 Guild (Server) Data
+When you add Aether to a server, we store:
+- The guild ID and basic guild metadata (name, icon URL) used for display purposes in the dashboard
+- Module configuration you set via `/settings` or the dashboard (channel IDs, role IDs, message templates, toggle states)
+- Your current subscription tier
+
+### 2.2 User Data
+Depending on which modules are enabled in your server, we may store:
+- **User IDs** — used to associate notes, strikes, applications, suggestions, sticky roles, and verification records with the correct member
+- **Verification records** — whether a user has passed verification in a given server
+- **Strike history** — strike count, reasons, and which staff member issued each strike
+- **User notes** — private staff-authored notes attached to a member (never visible to the subject)
+- **Application submissions** — answers submitted through application forms
+- **Suggestion submissions** — suggestion content and status
+- **Role snapshots** — role lists for the Sticky Roles module so they can be restored on rejoin
+- **Boost events** — timestamp of a member's server boost for the Booster Responder module
+
+We do **not** collect message content from general conversation. The Keyword Responder checks messages against configured keywords in memory and does not store message text.
+
+### 2.3 FiveM Integration Data
+If the FiveM module is configured, data is passed in real time between your FiveM server and the bot bridge:
+- Player identifiers (license, Steam, etc.) and in-game names — used only to fulfill the requested command (lookup, kick, ban, etc.) and not stored beyond the response
+- Inventory snapshots — transmitted in real time and not persisted
+
+The guild token used to authenticate your FiveM server is stored encrypted in our database.
+
+### 2.4 Custom Instance Credentials (Diamond)
+If you use a custom bot instance, your bot token is stored encrypted using AES-256-GCM. It is never logged or transmitted in plaintext.
+
+### 2.5 Subscription Data
+Subscription status (tier, renewal date, subscription ID) is received from Tebex via webhook and stored to enforce feature access. We do not handle or store payment card information — all billing is managed by Tebex.
+
+### 2.6 Dashboard Authentication
+When you log in to the dashboard via Discord OAuth2, we store a session containing your Discord user ID, username, and avatar URL. This session expires after logout or inactivity.
+
+### 2.7 Technical Logs
+We maintain server-side logs for debugging and security purposes. Logs include timestamps, guild/user IDs involved in the action, and the type of action. Logs are retained for a maximum of 30 days.
+
+---
+
+## 3. How We Use Your Data
+
+We use collected data solely to:
+- Operate the features you have configured (moderation, tickets, roles, etc.)
+- Enforce subscription tier limits
+- Display your server's settings in the web dashboard
+- Restore data when you resubscribe after a lapse
+
+We do not use your data for advertising, profiling, or any purpose beyond operating the service.
+
+---
+
+## 4. Data Retention
+
+| Situation | Retention |
+|---|---|
+| Bot active in your server | Data retained indefinitely while active |
+| Bot removed from server | All guild data flagged for deletion after **30 days** |
+| Subscription lapses (non-Diamond) | Premium config preserved **30 days**, then purged |
+| Diamond subscription lapses | Instance shut down, all data preserved **30 days**, then purged |
+| You resubscribe within 30 days | All data restored automatically |
+
+User-level data (notes, strikes, applications, etc.) is deleted when the guild's data is purged.
+
+---
+
+## 5. Data Sharing
+
+We do not sell, rent, or share your data with third parties except:
+- **Discord** — we interact with the Discord API as required to operate the bot
+- **Tebex** — subscription validation requires querying the Tebex API
+- **Infrastructure providers** — our database and server hosting providers have incidental access to stored data under their own privacy policies
+
+---
+
+## 6. Security
+
+- Custom instance tokens are encrypted at rest using AES-256-GCM
+- The web dashboard uses HTTPS and secure session cookies
+- Database access is restricted to application services only
+- We do not log tokens, secrets, or credentials in plaintext
+
+Despite these measures, no internet service can guarantee absolute security. Use Aether at your own risk.
+
+---
+
+## 7. Your Rights
+
+As a server administrator or end user, you may:
+- **Request deletion** — ask us to delete your guild's data before the 30-day automatic purge by contacting us in the support server
+- **Request a copy** — ask what data we hold about your guild or user ID
+- **Opt out** — remove the bot from your server at any time; automated deletion will follow within 30 days
+
+Individual members of a server (who are not server administrators) should direct data requests to the server administrator who added the bot.
+
+---
+
+## 8. Children
+
+Aether is not directed at users under the age of 13. We do not knowingly collect data from children under 13. Discord's own Terms of Service require users to be at least 13 years old.
+
+---
+
+## 9. Changes to This Policy
+
+We may update this policy as the bot's features evolve. We will post a notice in our support server's announcements channel when material changes are made. Continued use of the bot after changes constitutes acceptance.
+
+---
+
+## 10. Contact
+
+For any privacy-related questions or data requests, contact us at **aetherhelp@outlook.com** or in the [Aether Support Server](https://discord.gg/ebuTtkDxWb).

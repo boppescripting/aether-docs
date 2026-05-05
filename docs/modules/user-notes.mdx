@@ -1,0 +1,54 @@
+# User Notes
+
+## Private Staff Notes on Members
+
+### Overview
+
+The User Notes module gives your staff team a private, persistent notepad for each member. Notes are never visible to the subject — only staff with the configured role (or Administrators) can view, add, edit, or delete them. Each note records who wrote it and when, providing a built-in audit trail. An optional log channel posts an embed whenever a note is added, edited, or deleted, giving your staff team full visibility into note activity.
+
+### Setup
+
+1. Run `/settings usernotes` to open the User Notes settings.
+2. Click **Set Staff Role** and select the role whose members can use notes. Without a configured role, only Administrators can access this feature.
+3. *(Optional)* Click **Set Log Channel** to select a channel where note activity (add, edit, delete) is logged.
+4. *(Optional)* Click **Clear Staff Role** to revert to Administrator-only access.
+
+### Usage
+
+- **Adding a note** — Run `/note add @member`. A modal opens where you enter the note content (up to 1,000 characters). Submit to save.
+- **Viewing notes** — Run `/note view @member`. An ephemeral embed appears showing all notes on that member, ordered newest-first. Each entry shows the note number, the author's mention, and how long ago it was written.
+- **Log channel** — If configured, every note add, edit, and delete posts an embed to the log channel showing the staff member, the subject, and the note content.
+
+All responses are ephemeral — notes are never shown in public channels. The log channel is the only place note activity appears outside of the note commands.
+
+### Commands
+
+#### /note add
+- **Description:** Opens a modal to add a private note about a member.
+- **Parameters:** `user` (User, required) — the member to note.
+- **Permissions:** Administrator, or the role configured in `/settings usernotes`.
+- **Available On:** Both.
+
+#### /note view
+- **Description:** Shows all notes on a member with edit and delete controls in the response.
+- **Parameters:** `user` (User, required) — the member whose notes to display.
+- **Permissions:** Administrator, or the role configured in `/settings usernotes`.
+- **Available On:** Both.
+
+#### /settings usernotes
+- **Description:** Opens the User Notes settings menu.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Tier Limits
+
+The limit applies to the number of notes per subject member per server, regardless of how many staff members contribute.
+
+| Tier | Notes per Member |
+|------|-----------------|
+| Free | 5 |
+| Gold | 10 |
+| Diamond | Unlimited |

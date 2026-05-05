@@ -1,0 +1,53 @@
+# Server Stats Channels
+
+## Live Voice Channel Statistics
+
+### Overview
+Server Stats Channels displays live server metrics inside read-only voice channel names. Members can see stats like total member count, online members, boost count, and more at a glance without needing a command. Channels refresh automatically every 10 minutes to stay within Discord's rate limits.
+
+### Setup
+1. Open `/settings` and navigate to **Server Stats**.
+2. Enable the module using the **Enable Module** button.
+3. Click **Add Stat Channel** and select the stat type you want to display.
+4. Select an existing voice channel from the picker (the bot will rename it automatically).
+5. Enter a prefix label (e.g. `Members:`) — the channel name will become `Members: 1,204`.
+6. Repeat for each additional stat channel within your tier limit.
+
+### Usage
+Once configured, the bot renames each stat voice channel every 10 minutes. Discord limits channel renames to roughly 2 per 10 minutes per channel, so the 10-minute refresh interval is intentional. The channels should be set to read-only for members so no one can accidentally join or send messages.
+
+### Configuration Options
+
+| Option | Description |
+|--------|-------------|
+| Enabled | Master toggle for all stat channels |
+| Stat channels | List of voice channels, each bound to a specific stat type |
+| Stat type | What to display: Members, Online, Bots, Channels, Roles, or Boosts |
+| Prefix | Text shown before the number (e.g. `Members:`, `Online:`) |
+
+### Stat Types
+
+| Type | Description |
+|------|-------------|
+| Members | Total member count (including bots) |
+| Online | Members currently online (requires presence data) |
+| Bots | Number of bot accounts in the server |
+| Channels | Total number of channels |
+| Roles | Total number of roles |
+| Boosts | Server boost count |
+
+### Commands
+
+#### /settings server-stats
+- **Description:** Opens the Server Stats settings panel.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+### Tier Limits
+
+| Tier | Stat Channels |
+|------|--------------|
+| Free | 3 |
+| Gold | 6 |
+| Diamond | Unlimited |

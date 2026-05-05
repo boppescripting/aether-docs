@@ -1,0 +1,42 @@
+# Reminders
+
+## Set a personal reminder that the bot delivers via DM
+
+### Overview
+Allows any member to set personal timed reminders. When the time is up, the bot sends a DM with the reminder message. If the DM cannot be delivered, the bot falls back to pinging the user in the channel where the reminder was set. No server-side configuration required.
+
+### Setup
+No setup required. The module is active on all servers as soon as the bot is present.
+
+### Usage
+Use `/remind set` to create a reminder with a duration and message. The bot confirms the reminder and fires it at the specified time via DM (or channel ping if DMs are closed). Use `/remind list` to see your active reminders and `/remind cancel` to cancel one before it fires.
+
+Supported duration units: `d` (days), `h` (hours), `m` (minutes). Combine them freely: `1d12h`, `2h30m`, `45m`.
+
+| Limit | Value |
+|-------|-------|
+| Minimum duration | 1 minute |
+| Maximum duration | 30 days |
+| Max active reminders per user | 3 |
+
+### Commands
+
+#### /remind set
+- **Description:** Sets a personal reminder. The bot DMs you when the time is up.
+- **Parameters:**
+  - `time` (string, required) — How long from now, e.g. `30m`, `2h`, `1d12h`.
+  - `message` (string, required) — What to remind you about (max 500 characters).
+- **Permissions:** None (available to all members).
+- **Available On:** Both
+
+#### /remind list
+- **Description:** Lists your active (not yet fired) reminders with their fire times.
+- **Parameters:** None.
+- **Permissions:** None (available to all members).
+- **Available On:** Both
+
+#### /remind cancel
+- **Description:** Opens a select menu to cancel one of your active reminders.
+- **Parameters:** None.
+- **Permissions:** None (available to all members).
+- **Available On:** Both

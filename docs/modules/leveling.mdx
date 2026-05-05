@@ -1,0 +1,45 @@
+# Leveling
+
+## XP-Based Leveling System
+
+### Overview
+The Leveling module rewards members for participating in server conversations by granting XP (experience points) per message. As members accumulate XP they level up, triggering configurable announcements and optional role rewards. The level curve matches MEE6: each level requires progressively more XP than the last.
+
+### Setup
+1. Open `/settings` and navigate to **Leveling**.
+2. Enable the module with the **Enable Module** toggle.
+3. Under **XP Settings**, configure the base XP per message, optional random variance, and the cooldown between grants to prevent farming.
+4. Under **Announcements**, choose whether level-up messages post to a specific channel, the same channel as the triggering message, or as a DM to the member.
+5. Under **Reward Roles**, add roles to award at specific level thresholds and choose whether roles stack or replace.
+6. Under **Ignored Channels & Roles**, exclude any channels or roles that should not earn XP.
+
+### Usage
+Once enabled, members automatically earn XP each time they send a message in a non-ignored channel, provided they are not on cooldown and do not hold an ignored role. When a member crosses a level threshold, the configured announcement fires and any eligible reward roles are granted.
+
+Members can check their own rank at any time with `/rank`. Staff can view any member's rank with `/rank user:@member` and manage XP directly with `/xp set` or `/xp reset`.
+
+### Commands
+
+#### /rank
+- **Description:** Shows your current XP, level, server rank, and progress to the next level.
+- **Parameters:** `user` (optional) — the member to look up. Defaults to yourself.
+- **Permissions:** Available to all members.
+- **Available On:** Both
+
+#### /leaderboard
+- **Description:** Displays the top members by XP in the server, paginated in groups of 10.
+- **Parameters:** None.
+- **Permissions:** Available to all members.
+- **Available On:** Both
+
+#### /xp set
+- **Description:** Overrides a member's XP total and recalculates their level.
+- **Parameters:** `user` (required) — the target member. `amount` (required, 0–10,000,000) — the new XP total.
+- **Permissions:** Requires Manage Server.
+- **Available On:** Both
+
+#### /xp reset
+- **Description:** Resets a member's XP and level to zero.
+- **Parameters:** `user` (required) — the member to reset.
+- **Permissions:** Requires Manage Server.
+- **Available On:** Both

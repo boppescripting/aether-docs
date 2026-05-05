@@ -1,0 +1,127 @@
+# Premium Tiers
+
+## Simple, Honest Pricing
+
+No feature hiding. No "contact us" tiers. Every feature is listed below so you know exactly what you're getting.
+
+---
+
+## Plans at a Glance
+
+| | Free | Gold | Diamond |
+|---|---|---|---|
+| **Price** | $0 | $9.99/mo | $18.99/mo |
+| **Verification** | ✓ | ✓ | ✓ |
+| **Welcome** | ✓ | ✓ | ✓ |
+| **Tickets** | 1 panel | 3 panels | Unlimited |
+| **Applications** | 3 forms | 5 forms | Unlimited |
+| **User Notes** | 5 per member | 10 per member | Unlimited |
+| **Strike Manager** | ✓ | ✓ | ✓ |
+| **Auto Roles** | 1 role | 5 roles | Unlimited |
+| **Reaction Roles** | 5 panels | 10 panels | Unlimited |
+| **Sticky Roles** | 5 roles | 5 roles | Unlimited |
+| **Keyword Responder** | 1 keyword | 5 keywords | Unlimited |
+| **Vanity Roles** | ✓ | ✓ | ✓ |
+| **Suggestions** | ✓ | ✓ | ✓ |
+| **Purge / Echo / Sticky** | ✓ | ✓ | ✓ |
+| **Alt Prevention** | ✓ | ✓ | ✓ |
+| **Anti-Tagging** | ✓ | ✓ | ✓ |
+| **Role Permissions** | — | ✓ | ✓ |
+| **Ticket Transcripts** | Text only | Text + HTML | Text + HTML + Auto |
+| **FiveM Integration** | — | Full access | Full access |
+| **Custom Instance** | — | — | ✓ |
+
+---
+
+## Free — $0/month
+
+Everything you need to run a clean, well-managed server. Free forever, no credit card required.
+
+**Included:**
+- All core modules (verification, welcome, moderation, suggestions, auto responders)
+- 1 ticket panel, 3 application forms, 5 notes per member, 1 keyword responder
+- 1 auto role, 5 reaction role panels, 5 sticky roles
+- Vanity roles, alt prevention, anti-tagging, sticky messages, echo, purge
+
+**Limits exist on** multi-entity modules (tickets, applications, etc.) to keep shared infrastructure healthy. Upgrade to Gold or Diamond to raise or remove them.
+
+---
+
+## Gold — $9.99/month
+
+For active communities that need higher limits and the FiveM integration.
+
+**Everything in Free, plus:**
+
+### Higher Limits
+- 3 ticket panels (vs 1)
+- 5 application forms (vs 3)
+- 10 notes per member (vs 5)
+- 5 keyword responders (vs 1)
+- 10 reaction role panels (vs 5)
+- HTML ticket transcripts (vs text-only)
+
+### Role Permissions Module *(Gold exclusive)*
+Let your staff roles assign or remove specific roles via `/role add` and `/role remove` commands — without giving them full admin. Built-in protections prevent anyone from assigning roles above their own position or granting permissions they don't hold natively.
+
+### FiveM Integration *(Gold exclusive)*
+A live connection between your Discord server and your FiveM server. Once set up with a single `/fivem setup` command and a small resource on your FiveM server, your staff can:
+
+- `/fivem playerlist` — see who's online right now
+- `/fivem lookup <id>` — detailed player info, identifiers, job, money
+- `/fivem inventory <id>` — live inventory snapshot
+- `/fivem giveitem <id> <item> <amount>` — give items remotely
+- `/fivem heal <id>` — heal a player to full (or a specified amount)
+- `/fivem kick <id> [reason]` — kick a player with an optional reason
+- `/fivem ban <id> [reason]` — ban a player
+- `/fivem kickall [reason]` — disconnect everyone (e.g. before a restart)
+- `/fivem announce <message>` — server-wide on-screen announcement
+
+No RCON, no web panel, no third-party tools. Just Discord.
+
+**Works with:** ESX, QBCore, QBox — detected automatically. Supports ox_inventory, qb-inventory, ps-inventory, and ESX default inventory.
+
+---
+
+## Diamond — $18.99/month
+
+For communities that want Aether to feel like their own bot.
+
+**Everything in Gold, plus:**
+
+### Unlimited Limits
+Every multi-entity limit is removed. Unlimited ticket panels, application forms, notes, keywords, reaction role panels, auto roles.
+
+### Auto-Transcribing Tickets
+Ticket transcripts are generated automatically when a ticket is closed — no staff action required. Delivered as formatted HTML to a configured channel.
+
+### Custom Bot Instance
+Your own Discord bot account, running under your server's branding. You bring the bot token; Aether runs it within the same hardened infrastructure. Your instance gets:
+
+- Your own bot name, avatar, and bio (set via `/bot bio`)
+- Your own status message (`/bot status`)
+- Your own activity (`/bot activity`)
+- All Aether modules, fully functional on your bot
+
+**Your instance is fully isolated.** An error on another server's instance will never affect yours. If your instance crashes, it automatically reconnects with exponential backoff. If it can't reconnect, you're notified and your data is preserved.
+
+**Data retention on lapse:** If your Diamond subscription lapses, your instance is shut down gracefully and all data is preserved for 30 days. Resubscribe within that window and everything is restored automatically.
+
+---
+
+## Frequently Asked Questions
+
+**Can I upgrade or downgrade at any time?**
+Yes. Upgrades take effect immediately. Downgrades take effect at the end of your current billing period, and your premium configuration is preserved for 30 days in case you come back.
+
+**What happens if I cancel?**
+Your server reverts to the Free tier at the end of the billing period. All data is preserved for 30 days. Nothing is deleted until that window passes.
+
+**Is the FiveM integration hard to set up?**
+No. Run `/fivem setup` in Discord, copy the token you receive, add it to a `config.lua` in the Aether FiveM resource, and start the resource. The resource auto-detects your framework and inventory system — no manual configuration.
+
+**Does the Custom Instance share infrastructure with the main bot?**
+It runs on the same server infrastructure but is fully isolated in code. Each instance has its own event handlers and command scope. One instance crashing does not affect any other.
+
+**What payment methods do you accept?**
+Payments are processed through Tebex, which supports major credit/debit cards and PayPal.

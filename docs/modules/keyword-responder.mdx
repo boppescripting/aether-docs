@@ -1,0 +1,40 @@
+# Keyword Responder
+
+## Automatic Replies to Configured Keywords
+
+### Overview
+
+Keyword Responder automatically replies to a member's message whenever it contains a specified keyword or phrase (case-insensitive). The bot replies directly to the triggering message so context is clear. Each keyword can optionally be scoped to a single channel, or left unscoped to match in any channel.
+
+### Setup
+
+1. Run `/settings keywordresponder` to open the Keyword Responder settings.
+2. Click **Add Keyword** to open the add form.
+3. Enter the trigger keyword or phrase, the response message, and an optional Channel ID to restrict matching to a specific channel. Leave the Channel ID blank to match in all channels.
+4. Repeat for each keyword.
+5. To remove a keyword, click **Remove Keyword** and select it from the dropdown.
+
+### Usage
+
+- When a message contains a configured keyword, the bot replies directly to that message with the configured response.
+- Matching is case-insensitive and uses substring detection (the keyword can appear anywhere in the message).
+- If a channel scope is set, the keyword only triggers in that channel.
+- Only the first matching keyword fires per message.
+
+### Commands
+
+#### /settings keywordresponder
+- **Description:** Opens the Keyword Responder settings menu to add or remove keyword-response pairs.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Tier Limits
+
+| Tier | Max Keywords |
+|------|-------------|
+| Free | 1 |
+| Gold | 5 |
+| Diamond | Unlimited |

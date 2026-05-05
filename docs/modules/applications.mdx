@@ -1,0 +1,61 @@
+# Applications
+
+## Application Forms with Accept/Deny Workflows
+
+### Overview
+
+The Applications module lets you create custom application forms that members fill out directly in Discord. Submissions are posted to a staff channel where moderators can accept or deny them with an optional reason. The applicant is notified of the decision via DM.
+
+### Setup
+
+1. Run `/settings applications` to open the Applications settings.
+2. Click **Create Form** and choose a preset (Staff Application, Content Creator, Community Member, or Custom).
+3. Fill in the button label, embed title, and embed description, then submit.
+4. Select the new form from the dropdown to open its configuration.
+5. Click **Submission Channel** to choose where completed applications are posted for staff review.
+6. *(Optional)* Click **Set Staff Role** to designate who can accept or deny applications.
+7. *(Optional)* Click **Accept Role** to assign a role to members whose application is accepted.
+8. *(Optional)* Click **Deny Role** to assign a role to members whose application is denied.
+9. *(Optional)* Click **Blacklisted Roles** to select up to 25 roles that are barred from submitting this form. Members holding any blacklisted role will see an error when they click the button.
+10. Click **Questions** to add intake questions applicants must answer (up to 15). Questions can be short answer, paragraph, or a dropdown select menu with custom options.
+11. Click **Send Form Panel** and select the channel where the application button should be posted.
+
+### Usage
+
+Once a form panel is posted:
+
+- **Submitting** — A member clicks the button. If the form has questions, a modal appears. Forms with more than 5 questions are split across multiple pages — the member completes each page in sequence. On the final page, the application is submitted and posted to the submission channel.
+- **Interrupted applications** — If a member closes the modal before finishing a multi-page form, their progress is saved for 15 minutes. The next time they click the button, they are offered the choice to **Continue** from where they left off or **Start Over**.
+- **Reviewing** — The submission message in the staff channel shows all answers plus **Accept** and **Deny** buttons. Clicking either opens a modal for an optional reason.
+- **Decision notification** — After a decision is made the submission message is updated with the outcome and the applicant receives a DM. If the applicant has DMs disabled, the failure is silently ignored.
+- **Role assignment** — If an Accept Role or Deny Role is configured, it is automatically assigned to the applicant when their application is decided. If the member has left the server, the assignment is silently skipped.
+- **Blacklist** — Members holding any blacklisted role cannot submit an application for that form. They receive an ephemeral error when clicking the button.
+- **One pending at a time** — A member cannot submit a second application for the same form while they have a pending one.
+
+### Commands
+
+There are no standalone commands for this module. All configuration is handled through `/settings applications`.
+
+#### /settings applications
+- **Description:** Opens the Applications settings menu for this server.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Question Types
+
+| Type | Description |
+|------|-------------|
+| Short answer | Single-line text input |
+| Paragraph | Multi-line text input |
+| Select menu | Dropdown with predefined options (configure options as comma-separated values) |
+
+### Tier Limits
+
+| Tier | Max Forms | Max Questions per Form |
+|------|-----------|------------------------|
+| Free | 3 | 15 |
+| Gold | 5 | 15 |
+| Diamond | Unlimited | 15 |

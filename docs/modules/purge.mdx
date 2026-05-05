@@ -1,0 +1,21 @@
+# Purge
+
+## Bulk Message Deletion
+
+### Overview
+
+The Purge command lets staff quickly delete batches of messages from a channel. You can delete up to 100 messages at once, with an optional filter to only remove messages from a specific user. Discord's API limits bulk deletion to messages posted within the last 14 days — older messages are automatically excluded.
+
+### Usage
+
+Run `/purge` in the channel you want to clean up. The deleted count is reported back as an ephemeral reply.
+
+### Commands
+
+#### /purge
+- **Description:** Bulk deletes recent messages from the current channel. Messages older than 14 days are silently skipped. The command deletes up to the requested amount from the 100 most recent eligible messages.
+- **Parameters:**
+  - `amount` (Integer, required) — number of messages to delete (1–100).
+  - `user` (User, optional) — if provided, only messages from this user are deleted.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.

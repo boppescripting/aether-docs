@@ -1,0 +1,70 @@
+# Custom Instances
+
+## Run Your Own Fully Branded Bot
+
+### Overview
+The Custom Instance system lets Diamond tier subscribers run a second, fully branded Discord bot powered by Aether's infrastructure. You provide a Discord bot token and client ID; Aether encrypts the token, stores it securely, and manages the bot's lifecycle inside the same process as the main bot. Every custom instance is fully isolated — a crash in one instance never affects another bot or the main Aether bot. If your Diamond subscription lapses, the instance is gracefully shut down and your configuration is preserved for 30 days.
+
+### Setup
+
+1. Create a new Discord application at [discord.com/developers/applications](https://discord.com/developers/applications).
+2. Under **Bot**, enable the **Message Content Intent**, **Server Members Intent**, and **Presence Intent**.
+3. Copy the bot **Token** from the Bot page.
+4. Copy the **Application ID** from the General Information page (this is your Client ID).
+5. Invite the bot to your server using the OAuth2 URL generator (scopes: `bot`, `applications.commands`).
+6. Run `/instance setup` in your Discord server and paste both the token and client ID.
+7. The bot will start up within a few seconds. Use `/instance status` to confirm it is running.
+
+### Usage
+
+Once running, your custom instance responds to all commands that are available on both the main bot and custom instances (`BOTH` scope). Commands marked as `INSTANCE_ONLY` (such as `/bot bio`, `/bot status`, `/bot activity`) are available **only** on the custom instance, not the main Aether bot.
+
+If the instance crashes or loses its connection, Aether will automatically retry up to 5 times with exponential backoff (5 s → 10 s → 20 s → 40 s → 80 s). If all retries fail, the guild owner receives a DM and the instance is marked as failed. Run `/instance setup` again to re-provision it.
+
+### Commands
+
+#### /instance setup
+- **Description:** Provisions a new custom bot instance or replaces an existing one. The token is encrypted with AES-256-GCM before being stored. Any previously running instance for this guild is stopped first.
+- **Parameters:**
+  - `token` (string, required) — the Discord bot token for your custom bot
+  - `clientid` (string, required) — the Discord application/client ID
+- **Permissions:** Administrator
+- **Available On:** Main bot only
+
+#### /instance status
+- **Description:** Shows the current health of your custom instance, including running state, last heartbeat timestamp, and any failure reason.
+- **Parameters:** None
+- **Permissions:** Administrator
+- **Available On:** Main bot only
+
+#### /instance restart
+- **Description:** Tears down and immediately re-spins up the custom instance using the stored token. Useful if the instance has become unresponsive.
+- **Parameters:** None
+- **Permissions:** Administrator
+- **Available On:** Main bot only
+
+#### /instance teardown
+- **Description:** Gracefully shuts down the custom instance and removes its record. Configuration is preserved in the database for 30 days.
+- **Parameters:** None
+- **Permissions:** Administrator
+- **Available On:** Main bot only
+
+#### /bot bio
+- **Description:** Updates the application description shown in the bot's Discord profile.
+- **Parameters:** `text` (string, required) — the new description (max 400 characters)
+- **Permissions:** Administrator
+- **Available On:** Custom instances only
+
+#### /bot status
+- **Description:** Sets the bot's online presence status.
+- **Parameters:** `status` (string, required) — one of: Online, Idle, Do Not Disturb, Invisible
+- **Permissions:** Administrator
+- **Available On:** Custom instances only
+
+#### /bot activity
+- **Description:** Sets the bot's activity displayed beneath its name (e.g. "Playing Minecraft").
+- **Parameters:**
+  - `type` (string, required) — one of: Playing, Watching, Listening to, Competing in
+  - `text` (string, required) — the activity text (max 128 characters)
+- **Permissions:** Administrator
+- **Available On:** Custom instances only

@@ -1,0 +1,58 @@
+# Birthday Announcements
+
+## Celebrate Your Community
+
+### Overview
+The Birthday Announcements module lets members register their birthday (month and day only — no year collected). A daily cron job runs at 00:05 UTC and posts a customizable announcement to a configured channel for every member whose birthday is today. An optional birthday role can be assigned on the day and automatically removed the next day.
+
+### Setup
+1. Open `/settings` and navigate to **Birthdays**.
+2. Enable the module using the **Enable Module** button.
+3. Click **Set Channel** and pick the text channel where announcements will be posted.
+4. (Optional) Click **Set Birthday Role** to pick a role that will be temporarily assigned to members on their birthday.
+5. (Optional) Click **Edit Message** to customize the announcement text. Use `{user}` and `{server}` as variables.
+
+### Usage
+- Members register their own birthday with `/birthday set <month> <day>`.
+- Staff with Manage Server permission can register a birthday for any member by adding the optional `user` parameter.
+- The bot checks birthdays every day at 00:05 UTC. On a match it posts the announcement and, if configured, assigns the birthday role.
+- The birthday role is removed the following day when the cron next runs.
+- Members can remove their birthday registration with `/birthday remove`.
+
+### Commands
+
+#### /birthday set
+- **Description:** Register a birthday (month and day).
+- **Parameters:**
+  - `month` (integer, required) — Month 1–12.
+  - `day` (integer, required) — Day 1–31.
+  - `user` (user mention, optional) — Member to set birthday for. Requires Manage Server if targeting someone other than yourself.
+- **Permissions:** Everyone (own birthday). Manage Server required to set for another member.
+- **Available On:** Both
+
+#### /birthday remove
+- **Description:** Remove a birthday registration.
+- **Parameters:**
+  - `user` (user mention, optional) — Member to remove birthday for. Requires Manage Server if targeting someone other than yourself.
+- **Permissions:** Everyone (own birthday). Manage Server required to remove for another member.
+- **Available On:** Both
+
+#### /birthday view
+- **Description:** View your registered birthday or another member's.
+- **Parameters:**
+  - `user` (user mention, optional) — Member to view. Defaults to yourself.
+- **Permissions:** Everyone
+- **Available On:** Both
+
+### Message Variables
+
+| Variable | Replaced With |
+|----------|--------------|
+| `{user}` | Discord mention of the birthday member |
+| `{server}` | Server name |
+
+### Notes
+- Year is never collected or stored — only month and day.
+- Announcements fire at 00:05 UTC. Members in earlier time zones may see the announcement a few hours into their birthday.
+- If the birthday role is deleted from Discord without clearing it in settings, the bot will log a warning and continue.
+- Each member can have one birthday registration per server.

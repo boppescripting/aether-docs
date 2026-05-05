@@ -1,0 +1,37 @@
+# Sticky Roles
+
+## Role Persistence Across Rejoins
+
+### Overview
+
+Sticky Roles remembers which configured roles a member held when they left the server and automatically re-assigns those roles when they rejoin. Only roles explicitly marked as sticky are saved and restored — other roles are not affected.
+
+### Setup
+
+1. Run `/settings stickyroles` to open the Sticky Roles settings.
+2. Click **Add Sticky Role** and select the role to make sticky. Repeat for each role.
+3. To stop a role from being sticky, click **Remove Sticky Role** and select it.
+
+### Usage
+
+- When a member leaves, the bot saves which configured sticky roles they held at the time.
+- When they rejoin (at any point in the future), those roles are re-assigned automatically.
+- Only the intersection of the member's roles and the configured sticky roles is saved. Roles added to the sticky list after a member leaves will not be retroactively applied.
+
+### Commands
+
+#### /settings stickyroles
+- **Description:** Opens the Sticky Roles settings menu.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Tier Limits
+
+| Tier | Max Sticky Roles |
+|------|-----------------|
+| Free | 5 |
+| Gold | 5 |
+| Diamond | Unlimited |

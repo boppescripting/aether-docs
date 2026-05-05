@@ -1,0 +1,59 @@
+# Tickets
+
+## Support ticket panels with claiming and transcripts
+
+### Overview
+
+The Tickets module lets you create one or more ticket panels — each with its own channel, category, staff role, and appearance. Members open tickets by clicking a button on the panel message. Staff can claim tickets to take ownership and close them when resolved. Tier limits control how many panels a server can have, and transcript format improves with higher tiers.
+
+| Tier | Panels | Transcript Format |
+|---|---|---|
+| Free | 1 | Plain text |
+| Gold | 3 | HTML |
+| Diamond | Unlimited | HTML, with optional auto-transcript on close |
+
+### Setup
+
+1. Run `/settings tickets` to open the Tickets settings.
+2. Click **Create Panel** and choose a preset (General Support, Staff Application, Bug Report, or Custom).
+3. Fill in the button label, embed title, and embed description in the modal.
+4. Select the new panel from the dropdown to open its configuration.
+5. Click **Set Channel** to choose where the panel message will be posted.
+6. Click **Set Category** to choose the Discord category where ticket channels are created.
+7. *(Optional)* Click **Set Staff Role** to choose the role that can see and manage tickets.
+8. *(Optional)* Click **Transcript Channel** to choose where closed ticket transcripts are sent.
+9. *(Diamond only)* Click **Enable Auto Transcript** to automatically generate and post a transcript whenever a ticket is closed. This toggle only appears when a transcript channel is configured and the server is on Diamond tier.
+10. *(Optional)* Click **Questions** to add intake questions members must answer when opening a ticket (up to 5).
+11. Click **Edit Text** to adjust the button label, embed text, or the maximum number of open tickets a single user can have on this panel (1–10, default 1).
+12. Click **Send Panel** to post the panel message to the configured channel.
+13. Repeat from step 2 to create additional panels (within your tier limit).
+
+### Usage
+
+Once a panel is posted:
+
+- **Opening a ticket** — A member clicks the panel button. If the panel has intake questions configured, a modal appears for them to fill in. Once submitted, the bot creates a private channel visible only to that member and the staff role, and replies with a link to the new channel. A member is blocked from opening more tickets on that panel if they have already reached the panel's configured open-ticket limit.
+- **Claiming a ticket** — Staff click **Claim** inside the ticket channel, or run `/ticket claim`. This records who is handling the ticket and notifies the channel.
+- **Closing a ticket** — Anyone in the ticket channel clicks **Close Ticket** or runs `/ticket close`. A confirmation prompt appears. On confirm, the ticket opener is removed from the channel so only staff remain. A close embed is posted with two buttons: **Generate Transcript** and **Delete Channel**. Staff can generate the transcript at any time before deletion, then delete the channel when ready.
+- **Auto-transcripts (Diamond)** — When enabled per-panel on Diamond tier, the bot automatically generates an HTML transcript and sends it to the transcript channel the moment the ticket is confirmed closed (before the close embed appears).
+- **Generating transcripts manually** — Staff click **Generate Transcript** in the close embed. If a transcript channel is configured, the file is sent there; otherwise it is sent as a direct file reply to the staff member. Available to all tiers (text format on Free, HTML on Gold/Diamond).
+
+### Commands
+
+#### /ticket claim
+- **Description:** Claims the ticket in the current channel, recording you as the handling staff member.
+- **Parameters:** None.
+- **Permissions:** Any member who can see the ticket channel (staff or ticket opener).
+- **Available On:** Both.
+
+#### /ticket close
+- **Description:** Initiates the close flow for the ticket in the current channel, showing a confirmation prompt.
+- **Parameters:** None.
+- **Permissions:** Any member who can see the ticket channel.
+- **Available On:** Both.
+
+#### /settings tickets
+- **Description:** Opens the Tickets settings menu for this server.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.

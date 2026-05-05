@@ -1,0 +1,79 @@
+# Temp Voice Channels
+
+## Automatic Private Voice Channels
+
+### Overview
+
+Members join a designated lobby channel and the bot instantly creates a private voice channel for them, then moves them into it. When everyone leaves the channel, the bot deletes it automatically. The member who triggered the creation is the channel owner and can manage it with `/vc` commands.
+
+### Setup
+
+1. Go to `/settings` → **Temp Voice**.
+2. Enable the module.
+3. Add one or more voice channels as **lobbies** (the channels members join to trigger creation).
+4. Optionally select a **category** where created channels will be placed. If no category is set, new channels are placed in the same category as the lobby channel they were triggered from.
+5. Optionally set a **name template** using `{username}` as a placeholder (default: `{username}'s Channel`).
+
+### Usage
+
+When a member joins a configured lobby channel, the bot:
+1. Creates a new voice channel named after the template, placed in the same category as the lobby (or the configured override category).
+2. Moves the member into it.
+
+The member is now the **owner** of that channel and can use `/vc` commands to manage it. If the owner leaves, ownership transfers to the next member still in the channel. When the channel becomes empty the bot deletes it automatically.
+
+**Lock/unlock behaviour:** Locking a channel hides it from everyone and prevents joins. Unlocking restores full visibility. Inviting a specific member to a locked channel grants them both view and join access.
+
+### Commands
+
+#### /vc rename
+- **Description:** Renames your temp voice channel.
+- **Parameters:** `name` (string, required) — the new channel name (max 100 characters).
+- **Permissions:** Must be the owner of the temp channel you are currently in.
+- **Available On:** Both.
+
+#### /vc limit
+- **Description:** Sets the user limit for your temp voice channel (0 = no limit).
+- **Parameters:** `number` (integer, required) — the maximum number of members allowed (0–99).
+- **Permissions:** Must be the owner of the temp channel you are currently in.
+- **Available On:** Both.
+
+#### /vc lock
+- **Description:** Locks your temp voice channel — hides it from everyone and prevents new joins. Use `/vc invite` to let specific members in.
+- **Parameters:** None.
+- **Permissions:** Must be the owner of the temp channel you are currently in.
+- **Available On:** Both.
+
+#### /vc unlock
+- **Description:** Unlocks your temp voice channel, restoring visibility and allowing anyone to join freely.
+- **Parameters:** None.
+- **Permissions:** Must be the owner of the temp channel you are currently in.
+- **Available On:** Both.
+
+#### /vc invite
+- **Description:** Grants a specific member the ability to see and join your locked temp voice channel.
+- **Parameters:** `user` (user mention, required) — the member to invite.
+- **Permissions:** Must be the owner of the temp channel you are currently in.
+- **Available On:** Both.
+
+#### /vc kick
+- **Description:** Disconnects a member from your temp voice channel.
+- **Parameters:** `user` (user mention, required) — the member to disconnect.
+- **Permissions:** Must be the owner of the temp channel you are currently in.
+- **Available On:** Both.
+
+#### /vc transfer
+- **Description:** Transfers ownership of your temp voice channel to another member in the channel.
+- **Parameters:** `user` (user mention, required) — the member to transfer ownership to.
+- **Permissions:** Must be the current owner of the temp channel. Target must be in the same channel.
+- **Available On:** Both.
+
+---
+
+### Tier Limits
+
+| Tier | Lobby Channels |
+|------|---------------|
+| Free | 1 |
+| Gold | 3 |
+| Diamond | Unlimited |

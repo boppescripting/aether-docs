@@ -1,0 +1,35 @@
+# Auto Roles
+
+## Automatic Role Assignment on Join
+
+### Overview
+
+Auto Roles automatically assigns one or more roles to every member who joins the server. Useful for granting a default "Member" role, access to introductory channels, or any role that every new member should receive.
+
+### Setup
+
+1. Run `/settings autoroles` to open the Auto Roles settings.
+2. Click **Add Role** and select the role to assign on join. Repeat for each role you want to add.
+3. To remove a role from the auto-assign list, click **Remove Role** and select it.
+
+### Usage
+
+Every time a member joins, the bot attempts to assign all configured roles. If a role no longer exists or the bot lacks permission to assign it, the failure is logged and the remaining roles are still attempted.
+
+### Commands
+
+#### /settings autoroles
+- **Description:** Opens the Auto Roles settings menu.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Tier Limits
+
+| Tier | Max Auto-Assign Roles |
+|------|----------------------|
+| Free | 1 |
+| Gold | 5 |
+| Diamond | Unlimited |

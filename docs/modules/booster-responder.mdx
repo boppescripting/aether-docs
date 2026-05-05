@@ -1,0 +1,33 @@
+# Booster Responder
+
+## Automatic Message When a Member Boosts
+
+### Overview
+
+Booster Responder sends a configurable message whenever a member boosts the server for the first time. The message supports dynamic variables and can be sent to a channel, delivered as a DM to the booster, or both.
+
+### Setup
+
+1. Run `/settings boosterresponder` to open the Booster Responder settings.
+2. Click **Set Message** to customize the boost message. Supported variables:
+   - `{user}` — mentions the booster
+   - `{server}` — the server name
+   - `{boostcount}` — total number of server boosts
+3. Click **Set Channel** to select where the message is posted publicly.
+4. Click **Enable DM** to also send the message directly to the booster.
+5. Click **Reset** to revert all settings to their defaults.
+
+### Usage
+
+- When a member boosts the server, the bot detects the premium status change and sends the configured message.
+- If a channel is set, the message is sent there.
+- If DM is enabled, the booster also receives the message privately.
+- If neither a channel nor DM is configured, no message is sent.
+
+### Commands
+
+#### /settings boosterresponder
+- **Description:** Opens the Booster Responder settings menu to configure the boost message, channel, and DM option.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.

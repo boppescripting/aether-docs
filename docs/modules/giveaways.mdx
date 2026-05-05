@@ -1,0 +1,47 @@
+# Giveaways
+
+## Host and Manage Server Giveaways
+
+### Overview
+
+The Giveaways module lets staff host timed giveaways in any channel. Members enter by clicking a button. When the giveaway ends — either by the timer or manually — winners are randomly selected and announced. Winners can be rerolled at any time.
+
+### Usage
+
+- Start a giveaway with `/giveaway start`, specifying the prize, duration, channel, and optional winner count.
+- The bot posts a giveaway embed with a **🎉 Enter** button that members click to enter. The entry count updates in real time.
+- The giveaway ends automatically when the timer expires. The bot picks random winners, updates the embed, and announces them in the channel.
+- If no one enters, the bot announces that there were no valid entries.
+- Use `/giveaway end` to end an active giveaway early.
+- Use `/giveaway reroll` to pick new winners from the original entry pool.
+- Use `/giveaway list` to see all active giveaways in the server.
+
+### Commands
+
+#### /giveaway start
+- **Description:** Starts a new giveaway in the specified channel.
+- **Parameters:**
+  - `prize` (String, required) — What is being given away.
+  - `duration` (String, required) — How long the giveaway runs. Supports `d`, `h`, `m`, `s` (e.g. `1d`, `12h`, `30m`, `1d12h`). Min 1 minute, max 30 days.
+  - `channel` (Channel, required) — The channel to post the giveaway in.
+  - `winners` (Integer, optional) — Number of winners to pick. Default 1, max 20.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.
+
+#### /giveaway end
+- **Description:** Manually ends an active giveaway early, immediately picking winners.
+- **Parameters:** None. Presents a dropdown of active giveaways to select from.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.
+
+#### /giveaway reroll
+- **Description:** Rerolls winners for a recently ended giveaway, picking new winners from the original entry pool.
+- **Parameters:** None. Presents a dropdown of ended giveaways.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.
+
+#### /giveaway list
+- **Description:** Lists all active giveaways in the server with their prize, channel, end time, and entry count.
+- **Parameters:** None.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.

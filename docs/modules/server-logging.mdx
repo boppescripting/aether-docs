@@ -1,0 +1,100 @@
+# Server Logging
+
+## Audit Everything That Happens in Your Server
+
+### Overview
+Server Logging posts human-readable entries to a configurable Discord channel whenever notable events occur in your server. Intended for your moderation team, not your members. Distinct from the internal Aether audit log — this module surfaces information directly inside Discord so staff don't need to leave the app.
+
+Supports a single catch-all log channel or separate channels per event category (messages, members, server/role changes, voice). Every event type is individually toggleable, and specific channels or roles can be excluded from logging entirely.
+
+### Setup
+1. Open `/settings` and navigate to **Server Logging**.
+2. Enable the module.
+3. Choose a **channel mode**: single channel or per-category.
+4. Set your log channel(s).
+5. Review the event categories (Messages, Members, Roles, Channels, Voice, Invites, Server) and disable any events you don't need.
+6. Optionally configure **ignored channels** (message events in these channels will not be logged) and **ignored roles** (member action events from members holding these roles will not be logged).
+
+### Usage
+Once configured, the bot automatically posts formatted embeds to the designated log channel(s) whenever a tracked event fires. No commands are required after initial setup.
+
+Each embed includes relevant context (user, channel, before/after values, timestamps) and is color-coded by event type:
+- **Green** — join, create, unban
+- **Red** — leave, kick, ban, delete
+- **Yellow** — edits and updates
+- **Purple** — voice activity
+
+### Commands
+Server Logging has no user-facing commands. All configuration is done through `/settings → Server Logging`.
+
+---
+
+## Tracked Events
+
+### Messages
+| Event | Description |
+|---|---|
+| Message Edited | Before and after content of an edited message |
+| Message Deleted | Content and author of a deleted message |
+| Bulk Delete | Number of messages removed in a purge |
+
+### Members
+| Event | Description |
+|---|---|
+| Join | User joined the server, with account age |
+| Leave | User left the server voluntarily |
+| Kick | User was kicked (detected via audit log) |
+| Ban | User was banned |
+| Unban | User was unbanned |
+| Nickname Change | Before and after nickname |
+| Role Added | A role was granted to a member |
+| Role Removed | A role was removed from a member |
+| Timeout | Timeout applied or removed |
+
+### Roles
+| Event | Description |
+|---|---|
+| Role Created | A new role was created |
+| Role Deleted | A role was deleted |
+| Role Updated | Name, color, or permissions changed |
+
+### Channels
+| Event | Description |
+|---|---|
+| Channel Created | A new channel or category was created |
+| Channel Deleted | A channel was deleted |
+| Channel Updated | Name, topic, or slowmode changed |
+
+### Voice
+| Event | Description |
+|---|---|
+| Voice Join | Member joined a voice channel |
+| Voice Leave | Member left a voice channel |
+| Voice Move | Member moved between voice channels |
+
+### Invites
+| Event | Description |
+|---|---|
+| Invite Created | New invite created, with code and expiry |
+| Invite Deleted | Invite deleted or expired |
+
+### Server
+| Event | Description |
+|---|---|
+| Server Name Changed | Before and after server name |
+| Icon Changed | New server icon thumbnail |
+| Verification Level Changed | Before and after verification level |
+
+---
+
+## Configuration Reference
+
+| Setting | Description |
+|---|---|
+| **Enabled** | Master on/off for the module |
+| **Channel Mode** | `single` — one channel for everything; `category` — separate channels per event type |
+| **Log Channel** | Target channel in single mode |
+| **Category Channels** | Separate channels for messages, members, server, and voice events |
+| **Ignored Channels** | Message events in these channels are suppressed |
+| **Ignored Roles** | Member action events from members holding these roles are suppressed |
+| **Per-event toggles** | Each of the 26 event types can be individually enabled or disabled |

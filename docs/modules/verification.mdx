@@ -1,0 +1,35 @@
+# Verification
+
+## Gate server access with button or captcha verification
+
+### Overview
+
+The Verification module prevents bots and unverified accounts from accessing your server. New members must complete a one-click button check or solve an image captcha before receiving access. Raid protection automatically pauses verification if an unusual number of members join within a short window, giving staff time to respond.
+
+### Setup
+
+1. Run `/settings verification` to open the Verification settings.
+2. Click **Set Channel** and choose the channel where the verification panel will be posted. Keep this channel visible to everyone but restrict access to the rest of the server using role permissions.
+3. Click **Set Role** and choose the role members receive after verifying. Ensure Aether's bot role is positioned above this role in server settings.
+4. Click **Set Mode** and choose either **Button** (one-click, no challenge) or **Captcha** (image-based challenge).
+5. *(Optional)* Click **Raid Threshold** to configure how many joins per minute trigger auto-pause. Default is 10.
+6. Click **Enable** to activate the module.
+7. Click **Send Panel** to post the verification panel to the configured channel.
+
+### Usage
+
+Once configured:
+
+- **Button mode** — Members click the **Verify** button. The bot immediately grants the configured role.
+- **Captcha mode** — Members click **Get Captcha**. The bot sends an ephemeral image with a 6-character code. The member clicks **Enter Code**, types the code, and submits. On a correct answer the role is granted. On failure they can request a new captcha.
+- **Raid protection** — If the join rate exceeds the configured threshold within one minute, verification automatically pauses and a warning is posted in the verification channel. Staff resume verification via `/settings verification` → **Resume Verification**.
+
+### Commands
+
+There are no standalone commands for this module. All configuration is handled through `/settings verification`.
+
+#### /settings verification
+- **Description:** Opens the Verification settings menu for this server.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.

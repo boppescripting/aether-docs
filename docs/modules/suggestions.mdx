@@ -1,0 +1,36 @@
+# Suggestions
+
+## Member Suggestion Submission and Staff Review
+
+### Overview
+
+Suggestions lets members submit ideas or feedback directly through Discord. Each suggestion is posted to a configurable channel with 👍/👎 reactions for community voting and three review buttons for staff. Staff can approve, deny, or mark suggestions as implemented, optionally providing a reason. The submitter receives a DM with the outcome. Once a decision is made, voting is closed and the final vote count is shown on the embed.
+
+### Setup
+
+1. Run `/settings suggestions` to open the Suggestions settings.
+2. Click **Set Channel** and select the channel where suggestions will be posted.
+3. Optionally click **Set Staff Role** to restrict review buttons to a specific role. If not set, only Administrators can review suggestions.
+
+### Usage
+
+- Members run `/suggest text` with their suggestion.
+- The bot posts an embed titled **Suggestion by {username}** to the configured channel, with 👍/👎 reactions and **Approve**, **Deny**, and **Implemented** buttons.
+- Members vote by reacting with 👍 or 👎. Each member may cast only one vote — reacting with the opposite emoji automatically removes their previous vote.
+- Staff click a review button, optionally enter a reason in the modal, and submit.
+- The original embed is updated with the decision, the final 👍/👎 counts, and the buttons and reactions are removed to prevent further votes.
+- The submitter receives a DM notification with the decision and reason (if provided).
+
+### Commands
+
+#### /suggest
+- **Description:** Submits a suggestion to the server's configured suggestions channel.
+- **Parameters:** `text` (String, required, max 1024 characters).
+- **Permissions:** None. Any member can use this command.
+- **Available On:** Both.
+
+#### /settings suggestions
+- **Description:** Opens the Suggestions settings menu to configure the suggestions channel and staff review role.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.

@@ -1,0 +1,45 @@
+# Reaction Roles
+
+## Role Assignment via Emoji Reactions
+
+### Overview
+
+Reaction Roles let members self-assign roles by reacting to a message with a configured emoji. When the reaction is added, the role is assigned. When it is removed, the role is removed. The bot creates and manages the panel message itself — no need to post a message manually first. Multiple emoji-role pairs can be configured per panel, and multiple panels can be configured per server.
+
+### Setup
+
+1. Run `/settings reactionroles` and click **Add Panel**.
+2. Select the channel where the bot should post the reaction role panel embed.
+3. The bot sends an embed titled **"React to get a role!"** to that channel and opens the panel editor.
+4. Click **Add Reaction**, paste the emoji you want to use (e.g. `👍` or `<:custom:123456789>`), then select the role to assign when a member reacts with it.
+5. The bot adds that emoji as a reaction to the panel message and updates the embed to list the new pairing.
+6. Repeat for each emoji-role pair you want to add.
+7. To remove a pair, click **Remove Reaction** and select it from the dropdown.
+
+The embed on the panel message updates automatically whenever you add or remove a reaction-role pair, keeping it in sync with your configuration.
+
+### Usage
+
+- Members react to the panel message with an emoji → role is assigned.
+- Members remove their reaction → role is removed.
+- Reactions on non-configured messages are ignored.
+
+### Commands
+
+#### /settings reactionroles
+- **Description:** Opens the Reaction Roles settings menu to add or remove panels and emoji-role pairs.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Tier Limits
+
+The limit applies to the total number of emoji-role pairs across all configured panels in the server.
+
+| Tier | Total Reaction-Role Pairs |
+|------|--------------------------|
+| Free | 5 |
+| Gold | 10 |
+| Diamond | Unlimited |

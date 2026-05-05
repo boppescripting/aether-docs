@@ -1,0 +1,35 @@
+# Echo
+
+## Send Messages and Embeds as the Bot
+
+### Overview
+
+The Echo command lets staff send plain text messages or fully customised embeds to any channel as the bot. Useful for announcements, rules posts, or any styled content that should appear to come from the bot rather than a staff member.
+
+### Usage
+
+- **Plain text** — Run `/echo message` with a target channel and your content. The bot posts it immediately.
+- **Embed** — Run `/echo embed` with a target channel. A modal opens with fields for title, description, color, footer, and image URL. Submit to send.
+
+### Commands
+
+#### /echo message
+- **Description:** Posts a plain text message as the bot in the specified channel.
+- **Parameters:**
+  - `channel` (Channel, required) — destination channel.
+  - `content` (String, required) — message text, up to 2000 characters.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.
+
+#### /echo embed
+- **Description:** Opens an embed builder modal. On submit, sends the embed to the specified channel.
+- **Parameters:**
+  - `channel` (Channel, required) — destination channel.
+- **Modal fields:**
+  - **Title** (optional) — embed title, up to 256 characters.
+  - **Description** (required) — embed body, up to 4000 characters.
+  - **Color** (optional) — hex color code, e.g. `#5865F2`.
+  - **Footer text** (optional) — small text at the bottom of the embed.
+  - **Image URL** (optional) — full URL of an image to display in the embed.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.

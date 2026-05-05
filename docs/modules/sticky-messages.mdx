@@ -1,0 +1,36 @@
+# Sticky Messages
+
+## Persistent Bottom-of-Channel Messages
+
+### Overview
+
+Sticky messages re-post themselves to the bottom of a channel whenever a member sends a message, keeping important information always visible. Each channel can have one sticky message. The previous sticky post is automatically deleted each time it re-posts, so the channel never accumulates duplicates.
+
+### Usage
+
+- **Setting a sticky** — Run `/sticky set` with the target channel and your message content. The bot posts the sticky immediately.
+- **Removing a sticky** — Run `/sticky remove` with the channel. The current sticky post is deleted and the channel returns to normal.
+- **Updating a sticky** — Run `/sticky set` again on the same channel with new content. The old sticky is replaced.
+
+### Behaviour
+
+- The sticky only re-posts when a **non-bot** member sends a message.
+- The previous sticky post is deleted before the new one is sent, so only one sticky exists in the channel at any time.
+- Sticky configurations persist across bot restarts.
+
+### Commands
+
+#### /sticky set
+- **Description:** Sets or replaces the sticky message for a channel. Posts the message immediately.
+- **Parameters:**
+  - `channel` (Channel, required) — channel to apply the sticky to.
+  - `message` (String, required) — content of the sticky message, up to 2000 characters.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.
+
+#### /sticky remove
+- **Description:** Removes the sticky message from a channel and deletes the current sticky post.
+- **Parameters:**
+  - `channel` (Channel, required) — channel to remove the sticky from.
+- **Permissions:** Manage Messages.
+- **Available On:** Both.

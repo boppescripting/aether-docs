@@ -1,0 +1,53 @@
+# Strike Manager
+
+## Strikes with Automatic Threshold Actions
+
+### Overview
+
+The Strike Manager lets staff issue strikes to members with reasons, view full strike histories, and remove strikes manually. You configure thresholds so the bot automatically kicks or bans members when their active strike count reaches a set number. An optional log channel records every strike publicly for your team. FiveM integration (toggled in settings) will extend threshold bans to the in-game server when the FiveM module is active.
+
+### Setup
+
+1. Run `/settings strikes` to open the Strike Manager settings.
+2. Click **Set Staff Role** to select the role whose members can issue and manage strikes. Without a configured role, only Administrators can use this feature.
+3. *(Optional)* Click **Set Log Channel** to select a channel where strike events are posted publicly.
+4. Click **Add Threshold** to configure an automatic action. Enter a strike count and choose **Kick** or **Ban**. You can add multiple thresholds (e.g. 3 → kick, 5 → ban). Adding a threshold at an existing count replaces it.
+5. *(Optional)* Click **FiveM: Off** to enable FiveM integration. When enabled, a ban threshold will also send an in-game ban to your connected FiveM server.
+
+### Usage
+
+- **Issuing a strike** — Run `/strike issue @member`. A modal opens to enter the reason. On submit, the strike is recorded and the active count is checked against your configured thresholds. If a threshold is hit, the automatic action (kick or ban) executes immediately, preceded by a DM to the member.
+- **Viewing history** — Run `/strike view @member`. An ephemeral embed shows all strikes (🔴 active, ⚫ removed) with author, age, and reason.
+- **Removing a strike** — In the `/strike view` response, select a strike from the **Select strike to remove** dropdown. The strike is marked inactive and no longer counts toward thresholds.
+- **Log channel** — If configured, every issued strike posts an embed to the log channel showing the member, staff, active count, reason, and any automatic action taken.
+
+### Commands
+
+#### /strike issue
+- **Description:** Opens a modal to issue a strike to a member.
+- **Parameters:** `user` (User, required) — the member to strike.
+- **Permissions:** Administrator, or the role configured in `/settings strikes`. No Discord permission is required — access is controlled entirely by the bot's role check.
+- **Available On:** Both.
+
+#### /strike view
+- **Description:** Shows the full strike history for a member with controls to remove active strikes.
+- **Parameters:** `user` (User, required) — the member to view.
+- **Permissions:** Administrator, or the role configured in `/settings strikes`. No Discord permission is required — access is controlled entirely by the bot's role check.
+- **Available On:** Both.
+
+#### /settings strikes
+- **Description:** Opens the Strike Manager settings menu to configure thresholds, staff role, log channel, and FiveM integration.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
+
+---
+
+### Threshold Actions
+
+| Action | Effect |
+|--------|--------|
+| Kick | Removes the member from the server. They may rejoin. |
+| Ban | Permanently bans the member. If FiveM integration is enabled, also bans in-game. |
+
+Thresholds are evaluated against **active** strikes only. Removed strikes do not count.

@@ -1,0 +1,46 @@
+# AutoMod
+
+## Unified Automated Moderation
+
+### Overview
+
+AutoMod is a single unified module that covers seven independent moderation rules: alt account prevention, protected-role anti-tagging, anti-spam, anti-link, anti-caps, word filter, and invite filter. Each rule is independently enabled and configurable — enable only what your server needs. Rules run in sequence on every message and the first rule that triggers short-circuits the rest, preventing multiple actions on the same message.
+
+### Setup
+
+1. Run `/settings automod` in your server.
+2. Select **Global** to configure the log channel and any server-wide exempt roles or channels.
+3. Navigate to each rule you want to enable, toggle it on, and configure its specific settings.
+4. Each rule has an independent **Action** (warn, delete, mute, kick, or ban) so you can apply proportional responses.
+5. Save your changes. The configuration takes effect immediately.
+
+The same settings are available on the dashboard under **Settings → AutoMod**, with a tab for each rule.
+
+### Usage
+
+Once configured, AutoMod runs automatically:
+
+- **Alt Prevention** fires when a new member joins whose account is newer than the configured minimum age. The member receives a DM before they are kicked or banned.
+- **Anti-Tagging** detects messages that mention any of your configured protected roles — including roles that are not mentionable in Discord (the bot reads raw message content directly). The first matching message fires the configured action.
+- **Anti-Spam, Anti-Link, Anti-Caps, Word Filter, Invite Filter** evaluate every non-bot message in real time. The first matching rule fires its configured action and no further rules run on that message.
+- Members with exempt roles and messages in exempt channels bypass all rules globally.
+
+### Rule Reference
+
+| Rule | What it detects |
+|------|----------------|
+| **Alt Prevention** | New member accounts younger than a configured number of days |
+| **Anti-Tagging** | Mentions of any configured protected role (including non-mentionable roles) |
+| **Anti-Spam** | More than N messages in a rolling time window per user |
+| **Anti-Link** | Any URL, with optional domain allowlist |
+| **Anti-Caps** | Messages where caps percentage exceeds a configured threshold |
+| **Word Filter** | Messages containing configured blocked words or phrases (wildcard support) |
+| **Invite Filter** | Discord invite links, with optional server allowlist by invite code |
+
+### Commands
+
+#### /settings automod
+- **Description:** Opens the interactive AutoMod configuration menu in Discord. Provides a rule selector to navigate between Global settings and each individual rule panel.
+- **Parameters:** None.
+- **Permissions:** Administrator.
+- **Available On:** Both.
